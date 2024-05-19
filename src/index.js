@@ -36,7 +36,7 @@ export function use(puppeteer) {
       ignoreHTTPSErrors: true,
       executablePath: 'chromium-browser',
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--user-data-dir=~/browserless-cache', '--window-size=800,600', '--disable-web-security']
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   }
 
