@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source https://github.com/ccjmne/puppeteer-html2p
 
 USER root
 
-RUN apk add chromium
+RUN apk add chromium ttf-freefont
 
 # https://github.com/Yelp/dumb-init
 RUN apk update && apk add dumb-init

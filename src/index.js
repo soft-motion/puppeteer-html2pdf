@@ -13,7 +13,7 @@ const port = 3000;
 const limit = process.env.BODY_LIMIT || '1mb';
 
 app.use(express.json({ limit }));
-app.use(bodyParser.text({ type: 'text/html', limit }));
+app.use(bodyParser.text({ type: 'text/html', defaultCharset: 'utf-8' ,limit }));
 app.use(booleanParser());
 app.use(numberParser());
 
@@ -33,9 +33,10 @@ function parseRequest(request) {
 export function use(puppeteer) {
   function launchBrowser() {
     return puppeteer.launch({
+      ignoreHTTPSErrors: true,
       executablePath: 'chromium-browser',
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--user-data-dir=~/browserless-cache', '--window-size=800,600', '--disable-web-security']
     });
   }
 
@@ -44,7 +45,7 @@ export function use(puppeteer) {
     const { filename, options } = parseRequest(request);
     const res = await print({ htmlContents: request.body, browser, options });
     await browser.close();
-    response.attachment(`${filename}.pdf`).send(res);
+    response.attachment(`${filename}`).send(res);
   });
 
   app.post('/multiple', cors(), async (request, response) => {

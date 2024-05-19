@@ -4,7 +4,7 @@
   "description": "Print your HTML to PDF via Puppeteer in a Docker container. It's all in the repo name 👌",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode production --stats-error-details"
   },
   "repository": {
     "type": "git",
