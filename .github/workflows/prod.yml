@@ -46,7 +46,7 @@ jobs:
 
   redeploy-webhook:
     needs: build-and-push-image
-    runs-on: portainer_fileserver
+    runs-on: portainer_proddocflow
 
     steps:
       - name: Curl webhook to redeploy
